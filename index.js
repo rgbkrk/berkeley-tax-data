@@ -11,18 +11,18 @@ async function main(L) {
 
   globalThis.map = map;
 
-  /*L.tileLayer(
-    "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",
+  L.tileLayer(
+    "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicmdia3JrIiwiYSI6ImNsMmV0YTQ0OTAzeG4zYnF6a2h6dnd6ZGgifQ.MSykZRjit-9UlrXKN4aK7A",
     {
       maxZoom: 18,
       attribution:
         'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      id: "mapbox/streets-v11",
+      id: "mapbox/dark-v10",
       tileSize: 512,
       zoomOffset: -1,
     }
-  ).addTo(map); */
+  ).addTo(map);
 
   const data = await fetchData();
 
@@ -33,29 +33,23 @@ async function main(L) {
     },
     onEachFeature: function (feature, layer) {
       layer.bindPopup(() => {
-        console.log(feature.properties);
-
         const net_tax_formatted = new Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "USD",
+          maximumFractionDigits: 0,
+          minimumFractionDigits: 0,
         }).format(feature.properties.net_taxable);
 
         return `
 <pre>
-APN:         ${feature.properties.apn}
+APN:         <a href="${feature.properties.assessment_page}" target="_blank">${feature.properties.apn}</a>
 Net Taxable: ${net_tax_formatted}
+District:    ${feature.properties.district}
 </pre>
         `;
       });
     },
-  })
-
-    /*.bindPopup(function (layer) {
-      console.log(layer);
-      return layer.feature.properties.net_taxable;
-      // return layer.feature.properties.description;
-    })*/
-    .addTo(map);
+  }).addTo(map);
 }
 
 async function fetchData() {
