@@ -18,7 +18,7 @@ async function main(L) {
       attribution:
         'Parcel data <a href="https://data.cityofberkeley.info/">City of Berkeley Open Data</a>, ' +
         'Tax data <a href="https://acgov.org/MS/prop/index.aspx">Alameda County Assessor</a>, ' +
-        'Analysis <a href="https://twitter.com/rgbkrk">Kyle Kelley</a>',
+        'Analysis by <a href="https://twitter.com/rgbkrk">Kyle Kelley</a> in <a href="https://noteable.io/">Noteable</a>',
       id: "mapbox/dark-v10",
       tileSize: 512,
       zoomOffset: -1,
