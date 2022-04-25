@@ -3,7 +3,7 @@
  * @param { import("leaflet") } L
  */
 async function main(L) {
-  const center = { lat: 37.8761406467995, lng: -122.27620124816896 };
+  const center = { lat: 37.87414200707175, lng: -122.2753429412842 };
 
   const zoomLevel = 14;
 
@@ -23,6 +23,12 @@ async function main(L) {
       zoomOffset: -1,
     }
   ).addTo(map);
+
+  var legend = L.control({ position: "bottomleft" });
+  legend.onAdd = function (map) {
+    return Legend();
+  };
+  legend.addTo(map);
 
   const data = await fetchData();
 
@@ -60,6 +66,73 @@ Net Taxable: ${net_tax_formatted}
 District:    ${props.district}
 </pre>
   `;
+}
+
+function Legend() {
+  const div = document.createElement("div");
+  div.innerHTML = `
+  <div style="
+    background-color: #ffffff99;
+    padding: 5px 10px;
+  ">
+  <div
+    style="
+      vertical-align: middle;
+      max-width: 258px;
+      display: flex;
+      justify-content: space-between;
+    "
+  >
+    <strong style="float: left">Berkeley Tax Revenue</strong>
+  </div>
+  <div class="cmap">
+    <img
+      alt="colormap legend"
+      title="Taxable Berkeley Legend"
+      src="./heatmap.png"
+    />
+  </div>
+  <div
+    style="
+      vertical-align: middle;
+      max-width: 258px;
+      display: flex;
+      justify-content: space-between;
+    "
+  >
+    <div style="float: left">
+      <div
+        title="#3b4cc0ff"
+        style="
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          margin: 0;
+          vertical-align: middle;
+          border: 1px solid #555;
+          background-color: #3b4cc0ff;
+        "
+      ></div>
+      Low Tax Revenue
+    </div>
+    <div style="float: right">
+      High Tax Revenue
+      <div
+        title="#b40426ff"
+        style="
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          margin: 0;
+          vertical-align: middle;
+          border: 1px solid #555;
+          background-color: #b40426ff;
+        "
+      ></div>
+    </div>
+  </div>
+</div>`;
+  return div;
 }
 
 async function fetchData() {
