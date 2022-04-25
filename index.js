@@ -73,7 +73,7 @@ function Legend() {
   const div = document.createElement("div");
   div.innerHTML = `
   <div style="
-    background-color: #ffffff99;
+    background-color: #ffffffdd;
     padding: 5px 10px;
   ">
   <div
