@@ -16,8 +16,9 @@ async function main(L) {
     {
       maxZoom: 18,
       attribution:
-        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        'Parcel data <a href="https://data.cityofberkeley.info/">City of Berkeley Open Data</a>, ' +
+        'Tax data <a href="https://acgov.org/MS/prop/index.aspx">Alameda County Assessor</a>, ' +
+        'Analysis <a href="https://twitter.com/rgbkrk">Kyle Kelley</a>',
       id: "mapbox/dark-v10",
       tileSize: 512,
       zoomOffset: -1,
