@@ -83,7 +83,7 @@ function Legend() {
       justify-content: space-between;
     "
   >
-    <strong style="float: left">Berkeley Tax Revenue</strong>
+    <strong style="float: left">Berkeley Property Tax Revenue</strong>
   </div>
   <div class="cmap">
     <img
@@ -113,10 +113,10 @@ function Legend() {
           background-color: #3b4cc0ff;
         "
       ></div>
-      Low Tax Revenue
+      Low Revenue
     </div>
     <div style="float: right">
-      High Tax Revenue
+      High Revenue
       <div
         title="#b40426ff"
         style="
