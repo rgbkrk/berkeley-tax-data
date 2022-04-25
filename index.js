@@ -33,23 +33,33 @@ async function main(L) {
     },
     onEachFeature: function (feature, layer) {
       layer.bindPopup(() => {
-        const net_tax_formatted = new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
-          maximumFractionDigits: 0,
-          minimumFractionDigits: 0,
-        }).format(feature.properties.net_taxable);
-
-        return `
-<pre>
-APN:         <a href="${feature.properties.assessment_page}" target="_blank">${feature.properties.apn}</a>
-Net Taxable: ${net_tax_formatted}
-District:    ${feature.properties.district}
-</pre>
-        `;
+        return TaxPopup(feature.properties);
       });
     },
   }).addTo(map);
+}
+
+/**
+ *
+ * @param {{apn: string, net_taxable: string, district: string}} props
+ * @returns string
+ */
+function TaxPopup(props) {
+  const net_tax_formatted = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    // Decimals are always .00 so we might as well remove them
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  }).format(props.net_taxable);
+
+  return `
+<pre>
+APN:         <a href="${props.assessment_page}" target="_blank">${props.apn}</a>
+Net Taxable: ${net_tax_formatted}
+District:    ${props.district}
+</pre>
+  `;
 }
 
 async function fetchData() {
