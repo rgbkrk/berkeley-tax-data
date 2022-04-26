@@ -32,6 +32,7 @@ async function main(L) {
   legend.addTo(map);
 
   const data = await fetchData();
+  console.log(data);
 
   L.geoJSON(data, {
     style: function (feature) {
@@ -48,22 +49,19 @@ async function main(L) {
 
 /**
  *
- * @param {{apn: string, net_taxable: string, district: string}} props
+ * @param {{apn: string, revenue_psf: string, district: string}} props
  * @returns string
  */
 function TaxPopup(props) {
-  const net_tax_formatted = new Intl.NumberFormat("en-US", {
+  const revenue_psf = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    // Decimals are always .00 so we might as well remove them
-    maximumFractionDigits: 0,
-    minimumFractionDigits: 0,
-  }).format(props.net_taxable);
+  }).format(props.revenue_psf);
 
   return `
 <pre>
 APN:         <a href="${props.assessment_page}" target="_blank">${props.apn}</a>
-Net Taxable: ${net_tax_formatted}
+revenue/sf:  ${revenue_psf}
 District:    ${props.district}
 </pre>
   `;
@@ -88,8 +86,8 @@ function Legend() {
   </div>
   <div class="cmap">
     <img
-      alt="colormap legend"
-      title="Taxable Berkeley Legend"
+      alt="heatmap legend going from cold $ to hot $$$$$$$"
+      title="BerkeleyTaxable Berkeley Legend"
       src="./heatmap.png"
     />
   </div>
