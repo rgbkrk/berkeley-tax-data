@@ -27,9 +27,12 @@
     />
     <meta
       name="twitter:image"
-      content="https://lambdaops.com/berkeley-tax-data/card.png"
+      content="https://lambdaops.com/berkeley-tax-data/twitter-card.png"
     />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:label1" value="Analyze more" />
+    <meta name="twitter:data1" value="via @noteable_io" />
 
     <link
       rel="stylesheet"
@@ -37,29 +40,21 @@
       integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
       crossorigin=""
     />
+
+    <link rel="stylesheet" href="./main.css" />
+
     <script
       src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
       integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
       crossorigin=""
     ></script>
 
-    <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-      }
-      .leaflet-container {
-        height: 100%;
-        width: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        background-color: white;
-      }
-    </style>
+    <link rel="stylesheet" href="./Control.Loading.css" />
+    <script src="./Control.Loading.js"></script>
   </head>
   <body>
-    <div id="map" style="width: 100%; height: 100%"></div>
+    <div id="loading">Loading</div>
+    <div id="map"></div>
     <script src="./index.js"></script>
   </body>
 </html>

@@ -7,7 +7,7 @@ async function main(L) {
 
   const zoomLevel = 14;
 
-  const map = L.map("map").setView(center, zoomLevel);
+  const map = L.map("map", { loadingControl: true }).setView(center, zoomLevel);
 
   globalThis.map = map;
 
@@ -18,7 +18,7 @@ async function main(L) {
       attribution:
         'Parcel data <a href="https://data.cityofberkeley.info/">City of Berkeley Open Data</a>, ' +
         'Tax data <a href="https://acgov.org/MS/prop/index.aspx">Alameda County Assessor</a>, ' +
-        'Analysis by <a href="https://twitter.com/rgbkrk">Kyle Kelley</a> in <a href="https://noteable.io/">Noteable</a>',
+        'Analysis by <a href="https://twitter.com/rgbkrk">Kyle Kelley</a> via <a href="https://noteable.io/" style="color: #fafafa"><img src="n-logo.png" alt="Noteable logo" style="vertical-align: middle; padding-right: 5px; height: 1em" />Noteable</a>',
       id: "mapbox/dark-v10",
       tileSize: 512,
       zoomOffset: -1,
@@ -32,7 +32,6 @@ async function main(L) {
   legend.addTo(map);
 
   const data = await fetchData();
-  console.log(data);
 
   L.geoJSON(data, {
     style: function (feature) {
@@ -45,6 +44,9 @@ async function main(L) {
       });
     },
   }).addTo(map);
+
+  const loadingIndicator = document.querySelector("#loading");
+  loadingIndicator.remove();
 }
 
 /**
